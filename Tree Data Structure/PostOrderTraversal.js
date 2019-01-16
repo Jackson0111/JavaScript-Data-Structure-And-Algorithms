@@ -1,6 +1,5 @@
 /**
-* Here we implement the pre order traversal of a Binary Search Tree.
-* Pre order traversal will visit the parent first, then the left node and lastly the right node.
+* Post order traversal visits the left node, then right node and then the parent node.
 * For example, given a tree as shown below:
 *                        11
 *
@@ -10,8 +9,9 @@
 *
 *        3    6   8   10    12   14  18   25
 * The output after visiting every node using pre-order traversal will be:
-* 11 -> 7 -> 5 -> 3 -> 6 -> 9 -> 8 -> 10 -> 15 -> 13 -> 12 -> 14 -> 20 -> 18 -> 25
+* 3 -> 6 -> 5 -> 8 -> 10 -> 9 -> 7 -> 12 -> 14 -> 13 -> 18 -> 25 -> 20 -> 15 -> 11
 **/
+
 
 // Define the class, see more in BinarySearchTree.js
 function Node(key){
@@ -50,27 +50,24 @@ BinarySearchTree.prototype.push = function(key){
     }
 }
 
-var bst = new BinarySearchTree();
-var nodes = [11,7,15,5,9,13,20,3,6,8,10,12,14,18,25];
-for(var i = 0; i < nodes.length; i++){
+let bst = new BinarySearchTree();
+let nodes = [11,7,15,5,9,13,20,3,6,8,10,12,14,18,25];
+for(let i = 0; i < nodes.length; i++){
     bst.push(nodes[i]);
 }
 
 /**
-* NOW WE BEGIN THE PRE ORDER IMPLEMENTATION
+* NOW WE BEGIN THE POST ORDER TRAVERSAL IMPLEMENTATION
 **/
 
-function preOrderTraversal(node, callback){
-    // This is the exit condition.
-    // When we reach the bottom, we simply stop the recursion.
-    if (node !== null){ 
-        // We are at the current node, aka the parent of some node.
-        // Print itself, aka visit itself.
+function postOrderTraversal(node, callback){
+    // Exit condition
+    if (node !== null){
+        // We visit the left and left and left until we reach the bottom
+        postOrderTraversal(node.left, callback);
+        // Then we visit the right and back to the parent.
+        postOrderTraversal(node.right, callback);
         callback(node.key);
-        // Then we visit the left child and keep going down until we reach the bottom on the left
-        preOrderTraversal(node.left, callback);
-        // Then we will visit the right child.
-        preOrderTraversal(node.right, callback);
     }
 }
 
@@ -78,4 +75,4 @@ function printNode(key){
     console.log(key);
 }
 
-preOrderTraversal(bst.root, printNode);
+postOrderTraversal(bst.root, printNode);
