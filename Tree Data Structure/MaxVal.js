@@ -60,6 +60,9 @@ BinarySearchTree.prototype.maxVal = function(node){
     return null;
 }
 
+
+// Let's test it.
+
 let bst = new BinarySearchTree();
 let nodes = [11,7,15,5,9,13,20,3,6,8,10,12,14,18,25];
 for (let i = 0; i < nodes.length; i++){
