@@ -67,7 +67,7 @@ BinarySearchTree.prototype.searchNode = function(node, key){
         // The given value is larger than the current node's value, so we go to the right subtree.
         // When the recursive call comes back, we need to return what the call returns, so we return it here.
         return self.searchNode(node.right, key);
-    }else if (key === node.key){
+    }else {
         // If we reach here, we will know the given value is equal to the node's key. 
         // We simply return true because we have found it.
         return true;
@@ -81,6 +81,6 @@ for (let i = 0; i < nodes.length; i++){
     bst.push(nodes[i]);
 }
 
-console.log(bst.searchNode(bst.root, 0));
+console.log(bst.searchNode(bst.root, 25));
 
 
