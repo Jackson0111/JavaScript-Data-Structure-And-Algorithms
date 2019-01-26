@@ -55,9 +55,12 @@
  // The insert function will insert a node at any given position. It will return the true or false.
  LinkedList.prototype.insert = function(position, node){
     // First check if the position is valid.
-    if (position >= 0 && position < this.length){
+    if (position === 0){
+        this.head = node;
+        return true;
+    }else if (position> 0 && position <= this.length){
         let current = this.head;
-        let previous = null;
+        let prev = null;
         let currentIndex = 0;
         while(currentIndex < position){
             prev = current;
